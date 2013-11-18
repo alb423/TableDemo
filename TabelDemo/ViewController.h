@@ -8,6 +8,10 @@
 
 #import <UIKit/UIKit.h>
 
-@interface ViewController : UIViewController
+@interface ViewController : UIViewController <UITableViewDelegate>
 
+@property (weak, nonatomic) IBOutlet UITableView *FavoriteTableView;
+@property (weak, nonatomic) IBOutlet UITableViewCell *FavoriteTableViewCell;
+@property (strong, nonatomic) NSArray *URLListData;
+- (void)ProcessJsonDataForBroadCastURL:(NSData *)pJsonData;
 @end

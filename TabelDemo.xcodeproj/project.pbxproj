@@ -21,6 +21,10 @@
 		B26169741833D7A700E50C9B /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B26169561833D7A700E50C9B /* UIKit.framework */; };
 		B261697C1833D7A700E50C9B /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = B261697A1833D7A700E50C9B /* InfoPlist.strings */; };
 		B261697E1833D7A700E50C9B /* TabelDemoTests.m in Sources */ = {isa = PBXBuildFile; fileRef = B261697D1833D7A700E50C9B /* TabelDemoTests.m */; };
+		B26169881833DA5400E50C9B /* hinet_radio_json.json in Resources */ = {isa = PBXBuildFile; fileRef = B26169871833DA5400E50C9B /* hinet_radio_json.json */; };
+		B26169891833DA5400E50C9B /* hinet_radio_json.json in Resources */ = {isa = PBXBuildFile; fileRef = B26169871833DA5400E50C9B /* hinet_radio_json.json */; };
+		B261698B1833DBD900E50C9B /* iAd.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B261698A1833DBD900E50C9B /* iAd.framework */; };
+		B2AAB9CE183A88740069157A /* DailyProgramViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B2AAB9CD183A88740069157A /* DailyProgramViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -53,6 +57,10 @@
 		B26169791833D7A700E50C9B /* TabelDemoTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "TabelDemoTests-Info.plist"; sourceTree = "<group>"; };
 		B261697B1833D7A700E50C9B /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		B261697D1833D7A700E50C9B /* TabelDemoTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TabelDemoTests.m; sourceTree = "<group>"; };
+		B26169871833DA5400E50C9B /* hinet_radio_json.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = hinet_radio_json.json; sourceTree = "<group>"; };
+		B261698A1833DBD900E50C9B /* iAd.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = iAd.framework; path = System/Library/Frameworks/iAd.framework; sourceTree = SDKROOT; };
+		B2AAB9CC183A88740069157A /* DailyProgramViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DailyProgramViewController.h; sourceTree = "<group>"; };
+		B2AAB9CD183A88740069157A /* DailyProgramViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DailyProgramViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -60,6 +68,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B261698B1833DBD900E50C9B /* iAd.framework in Frameworks */,
 				B26169551833D7A700E50C9B /* CoreGraphics.framework in Frameworks */,
 				B26169571833D7A700E50C9B /* UIKit.framework in Frameworks */,
 				B26169531833D7A700E50C9B /* Foundation.framework in Frameworks */,
@@ -101,6 +110,7 @@
 		B26169511833D7A700E50C9B /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				B261698A1833DBD900E50C9B /* iAd.framework */,
 				B26169521833D7A700E50C9B /* Foundation.framework */,
 				B26169541833D7A700E50C9B /* CoreGraphics.framework */,
 				B26169561833D7A700E50C9B /* UIKit.framework */,
@@ -112,6 +122,7 @@
 		B26169581833D7A700E50C9B /* TabelDemo */ = {
 			isa = PBXGroup;
 			children = (
+				B26169871833DA5400E50C9B /* hinet_radio_json.json */,
 				B26169611833D7A700E50C9B /* AppDelegate.h */,
 				B26169621833D7A700E50C9B /* AppDelegate.m */,
 				B26169641833D7A700E50C9B /* Main.storyboard */,
@@ -119,6 +130,8 @@
 				B26169681833D7A700E50C9B /* ViewController.m */,
 				B261696A1833D7A700E50C9B /* Images.xcassets */,
 				B26169591833D7A700E50C9B /* Supporting Files */,
+				B2AAB9CC183A88740069157A /* DailyProgramViewController.h */,
+				B2AAB9CD183A88740069157A /* DailyProgramViewController.m */,
 			);
 			path = TabelDemo;
 			sourceTree = "<group>";
@@ -228,6 +241,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B26169881833DA5400E50C9B /* hinet_radio_json.json in Resources */,
 				B261696B1833D7A700E50C9B /* Images.xcassets in Resources */,
 				B261695D1833D7A700E50C9B /* InfoPlist.strings in Resources */,
 				B26169661833D7A700E50C9B /* Main.storyboard in Resources */,
@@ -238,6 +252,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B26169891833DA5400E50C9B /* hinet_radio_json.json in Resources */,
 				B261697C1833D7A700E50C9B /* InfoPlist.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -250,6 +265,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B26169691833D7A700E50C9B /* ViewController.m in Sources */,
+				B2AAB9CE183A88740069157A /* DailyProgramViewController.m in Sources */,
 				B26169631833D7A700E50C9B /* AppDelegate.m in Sources */,
 				B261695F1833D7A700E50C9B /* main.m in Sources */,
 			);
@@ -460,6 +476,7 @@
 				B26169831833D7A700E50C9B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		B26169841833D7A700E50C9B /* Build configuration list for PBXNativeTarget "TabelDemoTests" */ = {
 			isa = XCConfigurationList;
@@ -468,6 +485,7 @@
 				B26169861833D7A700E50C9B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

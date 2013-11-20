@@ -13,5 +13,6 @@
 @property (weak, nonatomic) IBOutlet UITableView *FavoriteTableView;
 @property (weak, nonatomic) IBOutlet UITableViewCell *FavoriteTableViewCell;
 @property (strong, nonatomic) NSArray *URLListData;
+@property NSInteger IndexSelected;
 - (void)ProcessJsonDataForBroadCastURL:(NSData *)pJsonData;
 @end

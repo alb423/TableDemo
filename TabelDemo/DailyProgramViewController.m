@@ -7,12 +7,21 @@
 //
 
 #import "DailyProgramViewController.h"
+#import "ViewController.h"
+#import "GetRadioProgram.h"
 
 @interface DailyProgramViewController ()
-
+{
+    NSArray *pRadioProgram;
+}
 @end
 
+
+
 @implementation DailyProgramViewController
+
+@synthesize pRadioProgramUrl;
+
 
 - (id)initWithStyle:(UITableViewStyle)style
 {
@@ -23,10 +32,44 @@
     return self;
 }
 
+- (void)fetchedDataForHttpGet:(NSData *)responseData {
+    NSError* error;
+    NSMutableDictionary* jsonDictionary = [NSJSONSerialization JSONObjectWithData:responseData //1
+                                                                          options:NSJSONReadingAllowFragments
+                                                                            error:&error];
+    if(error!=nil)
+    {
+        NSLog(@"json transfer error %@", error);
+        return;
+    }
+    
+    NSLog(@"json : %@",jsonDictionary);
+    // 1) retrieve the URL list into NSArray
+    // A simple test of URLListData
+    pRadioProgram = [jsonDictionary objectForKey:@"program"];
+    if(pRadioProgram==nil)
+    {
+        NSLog(@"URLListData load error!!");
+        return;
+    }
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
 
+//    NSLog(@"pRadioProgramUrl=%@",self.pRadioProgramUrl);
+//    [GetRadioProgram GetRequest:pRadioProgramUrl];
+    
+//    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+//        {
+            NSData* pJsonData;
+            pJsonData = [NSData dataWithContentsOfURL: [NSURL URLWithString:self.pRadioProgramUrl]];
+            [self performSelectorOnMainThread:@selector(fetchedDataForHttpGet:) withObject:pJsonData waitUntilDone:YES];
+//        }
+//    });
+    
+    
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
  
@@ -44,24 +87,25 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-#warning Potentially incomplete method implementation.
-    // Return the number of sections.
-    return 0;
+    return 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-#warning Incomplete method implementation.
-    // Return the number of rows in the section.
-    return 0;
+    return [pRadioProgram count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     static NSString *CellIdentifier = @"Cell";
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
     
-    // Configure the cell...
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    if(cell == nil){
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+    }
+    
+    NSDictionary *URLDict = [pRadioProgram objectAtIndex:indexPath.row];
+    cell.textLabel.text = [URLDict valueForKey:@"programName"];
     
     return cell;
 }

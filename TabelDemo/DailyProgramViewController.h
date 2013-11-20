@@ -9,5 +9,7 @@
 #import <UIKit/UIKit.h>
 
 @interface DailyProgramViewController : UITableViewController
-
+{;
+}
+@property (strong) NSString *pRadioProgramUrl;
 @end

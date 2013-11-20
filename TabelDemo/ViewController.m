@@ -9,12 +9,14 @@
 #import "ViewController.h"
 #import "DailyProgramViewController.h"
 @interface ViewController ()
-
+{
+NSString *pUserSelectedURL;
+}
 @end
 
 
 @implementation ViewController
-@synthesize URLListData, FavoriteTableView, FavoriteTableViewCell;
+@synthesize URLListData, FavoriteTableView, FavoriteTableViewCell, IndexSelected;
 
 #define DEFAULT_BROADCAST_URL @"hinet_radio_json.json"
 
@@ -103,14 +105,29 @@
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     // Set the URL_TO_PLAY to the url user select
-    NSDictionary *URLDict = [URLListData objectAtIndex:indexPath.row];
-    //[[DailyProgramViewController alloc]initWithStyle:UITableViewStylePlain];
-//    pUserSelectedURL = [URLDict valueForKey:@"url"];
-//    URLNameToDisplay.text = [URLDict valueForKey:@"title"];
-//    URLNameToDisplay.textAlignment = NSTextAlignmentCenter;
-//    
-}
 
+    //DailyProgramViewController *pDailyProgram = [[DailyProgramViewController alloc]initWithStyle:UITableViewStylePlain];
+    DailyProgramViewController *pDailyProgram = [[DailyProgramViewController alloc]init];
+    id NextViewController = pDailyProgram;
+    
+    NSDictionary *URLDict = [URLListData objectAtIndex:indexPath.row];
+    NSString *pRaidoId = [URLDict valueForKey:@"id"];
+    NSString *pMyDateString;
+    NSDate *now = [NSDate date];
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    [dateFormatter setDateFormat:@"yyyy-MM-dd"];
+    pMyDateString = [dateFormatter stringFromDate:now];
+    
+    // For different country, the program URL may be different
+    // This is for taiwan only
+    NSString *pUrl = [[NSString alloc]initWithFormat:@"http://hichannel.hinet.net/ajax/radio/program.do?id=%s&date=%s",
+                      [pRaidoId UTF8String],
+                      [pMyDateString UTF8String]];
+    
+    [NextViewController setValue:pUrl forKey:@"pRadioProgramUrl"];
+    
+    [self presentViewController:pDailyProgram animated:YES completion:nil];
+}
 
 
 @end

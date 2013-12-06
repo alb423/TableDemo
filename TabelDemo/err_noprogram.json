@@ -1,0 +1,8 @@
+{
+    "canOpenPlayer":"1",
+    "program":
+    [
+      {"on":"0", "programDay":"NoProgramToday", "programName":"", "timeRange":"     "},
+      {"on":"0", "programDay":"NoProgramToday", "programName":"NoProgramToday", "timeRange":"     "}
+    ]
+}

@@ -10,6 +10,8 @@
 #import "ViewController.h"
 #import "GetRadioProgram.h"
 
+#define JSON_ERR_NOPROGRAM @"err_noprogram.json"
+
 @interface DailyProgramViewController ()
 {
     NSArray *pRadioProgram;
@@ -20,17 +22,8 @@
 
 @implementation DailyProgramViewController
 
-@synthesize pRadioProgramUrl;
+@synthesize pRadioProgramUrl, pDailyProgramTable, pDailyProgramToday;
 
-
-- (id)initWithStyle:(UITableViewStyle)style
-{
-    self = [super initWithStyle:style];
-    if (self) {
-        // Custom initialization
-    }
-    return self;
-}
 
 - (void)fetchedDataForHttpGet:(NSData *)responseData {
     NSError* error;
@@ -40,9 +33,29 @@
     if(error!=nil)
     {
         NSLog(@"json transfer error %@", error);
-        return;
+        // TODO: make a fake jsonDictionary
+        // and show error message on the form
+        //parse out the json data
+        NSError* error;
+        
+        NSString *pJsonDataPath = [[[NSBundle mainBundle] bundlePath] stringByAppendingPathComponent:JSON_ERR_NOPROGRAM];
+        NSData *pJsonData = [[NSFileManager defaultManager] contentsAtPath:pJsonDataPath];
+        
+        
+        NSLog(@"%@", [[NSString alloc] initWithData:pJsonData encoding:NSUTF8StringEncoding]);
+        jsonDictionary = [NSJSONSerialization JSONObjectWithData:pJsonData //1
+            options:NSJSONReadingAllowFragments
+                        error:&error];
+        if(error!=nil)
+        {
+            NSLog(@"json transfer error %@", error);
+            return;
+            
+        }
+        //return;
     }
-    
+
+        
     NSLog(@"json : %@",jsonDictionary);
     // 1) retrieve the URL list into NSArray
     // A simple test of URLListData
@@ -58,16 +71,15 @@
 {
     [super viewDidLoad];
 
-//    NSLog(@"pRadioProgramUrl=%@",self.pRadioProgramUrl);
-//    [GetRadioProgram GetRequest:pRadioProgramUrl];
-    
-//    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-//        {
-            NSData* pJsonData;
-            pJsonData = [NSData dataWithContentsOfURL: [NSURL URLWithString:self.pRadioProgramUrl]];
-            [self performSelectorOnMainThread:@selector(fetchedDataForHttpGet:) withObject:pJsonData waitUntilDone:YES];
-//        }
-//    });
+    NSDate *now = [NSDate date];
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    [dateFormatter setDateFormat:@"yyyy-MM-dd"];
+    pDailyProgramToday.text = [dateFormatter stringFromDate:now];
+
+    NSData* pJsonData;
+    pJsonData = [NSData dataWithContentsOfURL: [NSURL URLWithString:self.pRadioProgramUrl]];
+    [self performSelectorOnMainThread:@selector(fetchedDataForHttpGet:) withObject:pJsonData waitUntilDone:YES];
+
     
     
     // Uncomment the following line to preserve selection between presentations.
@@ -105,60 +117,19 @@
     }
     
     NSDictionary *URLDict = [pRadioProgram objectAtIndex:indexPath.row];
-    cell.textLabel.text = [URLDict valueForKey:@"programName"];
+    
+    NSString *OutputText = [[NSString alloc]initWithFormat:@"%@  %@",
+                            [[URLDict valueForKey:@"timeRange"] substringToIndex:5],
+                            [URLDict valueForKey:@"programName"]];
+    
+    cell.textLabel.text = OutputText;
+    
     
     return cell;
 }
 
-/*
-// Override to support conditional editing of the table view.
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    // Return NO if you do not want the specified item to be editable.
-    return YES;
+- (IBAction)RadioProgramBackButtonClicked:(id)sender {
+    [self dismissViewControllerAnimated:TRUE completion:^(void){;
+    }];
 }
-*/
-
-/*
-// Override to support editing the table view.
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-        // Delete the row from the data source
-        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-    }   
-    else if (editingStyle == UITableViewCellEditingStyleInsert) {
-        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-    }   
-}
-*/
-
-/*
-// Override to support rearranging the table view.
-- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath
-{
-}
-*/
-
-/*
-// Override to support conditional rearranging of the table view.
-- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    // Return NO if you do not want the item to be re-orderable.
-    return YES;
-}
-*/
-
-/*
-#pragma mark - Navigation
-
-// In a story board-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
-{
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-
- */
-
 @end

@@ -49,10 +49,6 @@ NSString *pUserSelectedURL;
                                                                             error:&error];
     if(error!=nil)
     {
-        //NSString* aStr;
-        //aStr = [[NSString alloc] initWithData:pJsonData encoding:NSUTF8StringEncoding];
-        //NSLog(@"str=%@",aStr);
-        
         NSLog(@"json transfer error %@", error);
         return;
         
@@ -63,11 +59,9 @@ NSString *pUserSelectedURL;
     URLListData = [jsonDictionary objectForKey:@"url_list"];
     if(URLListData==nil)
     {
-        NSLog(@"URLListData load error!!");
+        NSLog(@"URLListData load error for %@!!", URLListData);
         return;
     }
-    //NSLog(@"URLListData=%@",URLListData);
-    
 }
 
 
@@ -89,7 +83,7 @@ NSString *pUserSelectedURL;
     }    
     NSDictionary *URLDict = [URLListData objectAtIndex:indexPath.row];
     cell.textLabel.text = [URLDict valueForKey:@"title"];
-    cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+    cell.accessoryType = UITableViewCellAccessoryDetailButton;
     URLDict = nil;
     
 
@@ -102,13 +96,9 @@ NSString *pUserSelectedURL;
     URLDict = nil;
 }
 
--(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    // Set the URL_TO_PLAY to the url user select
 
-    //DailyProgramViewController *pDailyProgram = [[DailyProgramViewController alloc]initWithStyle:UITableViewStylePlain];
-    DailyProgramViewController *pDailyProgram = [[DailyProgramViewController alloc]init];
-    id NextViewController = pDailyProgram;
+-(void)tableView:(UITableView *)tableView accessoryButtonTappedForRowWithIndexPath:(NSIndexPath *)indexPath
+{
     
     NSDictionary *URLDict = [URLListData objectAtIndex:indexPath.row];
     NSString *pRaidoId = [URLDict valueForKey:@"id"];
@@ -124,9 +114,28 @@ NSString *pUserSelectedURL;
                       [pRaidoId UTF8String],
                       [pMyDateString UTF8String]];
     
+#if 1    
+    // Instantiating a Storyboard's View Controller Programmatically.
+    UIStoryboard *us = [UIStoryboard storyboardWithName:@"Main" bundle: nil];
+    DailyProgramViewController *pDailyProgram = [us instantiateViewControllerWithIdentifier:@"DailyProgram"];
+    id NextViewController = pDailyProgram;
+
     [NextViewController setValue:pUrl forKey:@"pRadioProgramUrl"];
     
     [self presentViewController:pDailyProgram animated:YES completion:nil];
+#else
+    
+    // Test for triggering a Segue Programmatically.
+    // performSegueWithIdentifier: the id should a segue rather than a storyboard identifier
+    [self performSegueWithIdentifier:@"ShowMiscView" sender:self.view];
+    
+#endif
+}
+
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    // TODO: play the radio that user select
+    NSLog(@"didSelectRowAtIndexPath %@",indexPath);
 }
 
 

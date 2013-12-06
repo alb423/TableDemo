@@ -82,7 +82,8 @@
 -(void)connectionDidFinishLoading:(NSURLConnection *)connection
 {
     NSLog(@"connectionDidFinishLoading");
-    [self performSelectorOnMainThread:@selector(fetchedDataForHttpPost:) withObject:httpPostResponse waitUntilDone:YES];
+//    [self performSelectorOnMainThread:@selector(fetchedDataForHttpPost:) withObject:httpPostResponse waitUntilDone:YES];
+
 }
 
 @end

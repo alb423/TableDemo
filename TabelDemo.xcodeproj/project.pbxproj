@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		9A728B30184A2B2500BE92D1 /* MiscViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A728B2F184A2B2500BE92D1 /* MiscViewController.m */; };
+		9A728B32184AF33400BE92D1 /* err_noprogram.json in Resources */ = {isa = PBXBuildFile; fileRef = 9A728B31184AF33400BE92D1 /* err_noprogram.json */; };
 		B2217AD5183D1D20002FBB45 /* GetRadioProgram.m in Sources */ = {isa = PBXBuildFile; fileRef = B2217AD4183D1D20002FBB45 /* GetRadioProgram.m */; };
 		B26169531833D7A700E50C9B /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B26169521833D7A700E50C9B /* Foundation.framework */; };
 		B26169551833D7A700E50C9B /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B26169541833D7A700E50C9B /* CoreGraphics.framework */; };
@@ -39,6 +41,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		9A728B2E184A2B2500BE92D1 /* MiscViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MiscViewController.h; path = ../MiscViewController.h; sourceTree = "<group>"; };
+		9A728B2F184A2B2500BE92D1 /* MiscViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MiscViewController.m; path = ../MiscViewController.m; sourceTree = "<group>"; };
+		9A728B31184AF33400BE92D1 /* err_noprogram.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = err_noprogram.json; sourceTree = "<group>"; };
 		B2217AD3183D1D1F002FBB45 /* GetRadioProgram.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GetRadioProgram.h; sourceTree = "<group>"; };
 		B2217AD4183D1D20002FBB45 /* GetRadioProgram.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GetRadioProgram.m; sourceTree = "<group>"; };
 		B261694F1833D7A700E50C9B /* TabelDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TabelDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -91,6 +96,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		9A728B33184AF33B00BE92D1 /* jsonData */ = {
+			isa = PBXGroup;
+			children = (
+				9A728B31184AF33400BE92D1 /* err_noprogram.json */,
+				B26169871833DA5400E50C9B /* hinet_radio_json.json */,
+			);
+			name = jsonData;
+			sourceTree = "<group>";
+		};
 		B2217AD2183D1D11002FBB45 /* Radio */ = {
 			isa = PBXGroup;
 			children = (
@@ -134,8 +148,8 @@
 		B26169581833D7A700E50C9B /* TabelDemo */ = {
 			isa = PBXGroup;
 			children = (
+				9A728B33184AF33B00BE92D1 /* jsonData */,
 				B2217AD2183D1D11002FBB45 /* Radio */,
-				B26169871833DA5400E50C9B /* hinet_radio_json.json */,
 				B26169611833D7A700E50C9B /* AppDelegate.h */,
 				B26169621833D7A700E50C9B /* AppDelegate.m */,
 				B26169641833D7A700E50C9B /* Main.storyboard */,
@@ -145,6 +159,8 @@
 				B26169591833D7A700E50C9B /* Supporting Files */,
 				B2AAB9CC183A88740069157A /* DailyProgramViewController.h */,
 				B2AAB9CD183A88740069157A /* DailyProgramViewController.m */,
+				9A728B2E184A2B2500BE92D1 /* MiscViewController.h */,
+				9A728B2F184A2B2500BE92D1 /* MiscViewController.m */,
 			);
 			path = TabelDemo;
 			sourceTree = "<group>";
@@ -257,6 +273,7 @@
 				B26169881833DA5400E50C9B /* hinet_radio_json.json in Resources */,
 				B261696B1833D7A700E50C9B /* Images.xcassets in Resources */,
 				B261695D1833D7A700E50C9B /* InfoPlist.strings in Resources */,
+				9A728B32184AF33400BE92D1 /* err_noprogram.json in Resources */,
 				B26169661833D7A700E50C9B /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -279,6 +296,7 @@
 			files = (
 				B26169691833D7A700E50C9B /* ViewController.m in Sources */,
 				B2217AD5183D1D20002FBB45 /* GetRadioProgram.m in Sources */,
+				9A728B30184A2B2500BE92D1 /* MiscViewController.m in Sources */,
 				B2AAB9CE183A88740069157A /* DailyProgramViewController.m in Sources */,
 				B26169631833D7A700E50C9B /* AppDelegate.m in Sources */,
 				B261695F1833D7A700E50C9B /* main.m in Sources */,
